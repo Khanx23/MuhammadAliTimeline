@@ -1,0 +1,120 @@
+
+html,
+body {
+    height: 100%;
+    background-color: #161616;
+    margin: 0;
+    max-width: 100%;
+}
+
+.leaflet-container {
+    height: 400px;
+    width: 900px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.container {
+    display: flex;
+    background-color: #161616;
+    color: #C6AA80;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px; 
+    font-size: 20px;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.container h1 {
+    margin: 10px 0; 
+    font-family: 'Segoe UI', Antonia, Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 2px; 
+}
+
+.container h3 {
+    margin: 3.5px 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 2px; 
+}
+
+.button-container {
+    display: flex;
+    background-color: #161616; 
+    justify-content: center; 
+    align-items: center; 
+    padding-top: 10px; 
+}
+
+button {
+    padding: 15px 30px; 
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; 
+    margin: 10px; 
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3; 
+    color: #fff; 
+}
+
+#end {
+    background-color: #DC3545; 
+}
+
+
+#end:hover {
+    background-color: #a31c2b; 
+}
+
+.marker-popup {
+    text-align: left;
+    background-color: #fff;
+    padding: 10px;
+  }
+  .marker-popup h1 {
+    font-size: 1.8em;
+    letter-spacing: 0.8px;
+    margin: 0;
+    margin-bottom: 10px; 
+    font-family: 'Manrope';
+
+}
+.marker-popup h3 {
+    font-size: 1.2em;
+    letter-spacing: 0.8px;
+    margin: 0;
+    margin-bottom: 5px; 
+    font-family: 'Manrope';
+
+}
+.marker-popup h4 {
+    font-size: 0.9em;
+    margin: 0;
+    margin-bottom: 5px; 
+
+}
+
+  .marker-popup img {
+    display: block;
+    margin: 10px auto 0;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+  }
+  .marker-popup p {
+    font-size: 1.1em;
+    letter-spacing: 0.2px;
+    margin: 10px 0;
+    border-top: 2.5px solid #ccc; 
+    padding-top: 10px; 
+   
+    ;
+  }
+  

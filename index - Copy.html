@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base target="_top">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Quick Start - Leaflet</title>
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		.leaflet-container {
+			height: 400px;
+			width: 900px;
+			max-width: 100%;
+			max-height: 100%;
+		}
+	</style>
+
+	
+</head>
+<body>
+
+    <button id="beginning">Beginning</button>
+    <button id="next">Next</button>
+    <button id="end">End</button>
+	<div id="map" style="width: 80%; height: 80%;"></div>
+
+
+<script>
+    
+    var map = L.map('map').setView([41.07880582482324, -81.53143180793278], 13); // Replace with your desired center and zoom level
+
+    // Create an array of markers
+    var markers = [
+         //L.marker([41.07880582482324, -81.53143180793278]), // Marker 1
+         // Add more markers as needed
+      ];
+
+        // Add markers to the map
+        for (var i = 0; i < markers.length; i++) {
+         markers[i].addTo(map);
+      }
+
+      // Initialize marker index
+      var currentMarkerIndex = 0;
+
+      // Function to move to the next marker
+      function goToNextMarker() {
+         currentMarkerIndex++;
+         if (currentMarkerIndex >= markers.length) {
+            currentMarkerIndex = 0; // Wrap around to the first marker
+         }
+         map.setView(markers[currentMarkerIndex].getLatLng(), 13);
+      }
+
+        // Function to move to the first marker
+        function goToBeginning() {
+         currentMarkerIndex = 0;
+         map.setView(markers[currentMarkerIndex].getLatLng(), 13);
+      }
+
+      // Function to move to the last marker
+      function goToEnd() {
+         currentMarkerIndex = markers.length - 1;
+         map.setView(markers[currentMarkerIndex].getLatLng(), 13);
+      }
+
+      document.getElementById('next').addEventListener('click', goToNextMarker);
+      document.getElementById('beginning').addEventListener('click', goToBeginning);
+      document.getElementById('end').addEventListener('click', goToEnd);
+
+	// const map = L.map('map').setView([51.505, -0.09], 13); //map is on london
+    //const map = L.map('map').setView([42.01585447123376, -87.74781133324821], 17);
+
+	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 19,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	}).addTo(map);
+
+	const marker = L.marker([42.01585447123376, -87.74781133324821]).addTo(map)
+		.bindPopup('<b>Hello world!</b><br />I am a popup.');
+
+	const circle = L.circle([42.01585447123376, -87.74781133324821], {
+		color: 'blue',
+		fillColor: '#ffff',
+		fillOpacity: 0.5,
+		radius: 200
+	}).addTo(map).bindPopup('I am a circle.');
+
+	const polygon = L.polygon([
+		[41.688190795330826, -88.23240936210527],
+		[41.7575992631191, -88.19761199245792],
+		[41.65072712119914, -88.23405087559922]
+	]).addTo(map).bindPopup('I am a polygon.');
+
+    // create popup contents
+    var customPopup = "Penn Station<br/><img src='train.gif' alt='train logo gif' width='150px'/>";
+
+    const marker1 = L.marker([41.07880582482324, -81.53143180793278]).addTo(map)
+        .bindPopup('Cleveland Clinic Akron General')
+
+    //var marker3 = L.marker([51.5, -0.09]).addTo(map); // Marker 1
+    // var marker4 = L.marker([51.51, -0.1]).addTo(map);  // Marker 2
+    // document.getElementById('button1').addEventListener('click', function() {
+    //      map.setView([51.5, -0.09], 13); // Go to Marker 1
+    //   });
+
+    //   document.getElementById('button2').addEventListener('click', function() {
+    //      map.setView([51.51, -0.1], 13); // Go to Marker 2
+    //   });
+
+
+	// const popup = L.popup()
+	// 	.setLatLng([41.65072712119914, -88.23405087559922])
+	// 	.setContent('Plainfield home')
+		// .openOn(map);
+
+	// function onMapClick(e) {
+	// 	popup
+	// 		.setLatLng(e.latlng)
+	// 		.setContent(`You clicked the map at ${e.latlng.toString()}`)
+	// 		.openOn(map);
+	// }
+
+	map.on('click', onMapClick);
+
+</script>
+
+
+
+</body>
+</html>

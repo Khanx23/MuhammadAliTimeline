@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>The Timeline - Muhammad Ali</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="images/boxing-gloves.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cousine&family=Josefin+Sans:ital,wght@0,600;0,700;1,200&family=Manrope:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+</head>
+
+<body>
+
+
+    <!-- <div class="container">
+        <h1>HOMETOWN HERO TO GLOBAL ICON</h1>
+        <h3>The life and times of The Greatest Boxer of All Time: a timeline of Muhammad Ali.</h3>
+    </div> -->
+
+
+    <div id="map" style="width: 100%; height: 85%;"></div>
+
+    <div class="button-container">
+        <button id="beginning">Beginning</button>
+        <button id="next">Next Marker</button>
+        <button id="previous">Previous Marker</button>
+        <button id="end">End</button>
+    </div>
+
+
+    <script>
+        // Replace with your desired center and zoom level
+        var map = L.map('map').setView([38.26004523790746, -85.7475290807345], 14);
+
+        // Create an array of markers
+        var markers = [
+            //1
+            L.marker([38.26004523790746, -85.7475290807345]),
+            //2
+            L.marker([38.243218288507954, -85.7590746166493]),
+            //3
+            L.marker([38.25018502084625, -85.77070660293806]),
+            //4
+            L.marker([41.892046637203684, 12.488236383702395]),
+            //5
+            L.marker([42.33178452840074, -83.0470311936967]),
+            //6
+            L.marker([25.794914337124332, -80.13328063213561]),
+            //7
+            L.marker([30.04729821833354, 31.236490881043135]),
+            //8
+            L.marker([38.25988310262745, -85.79656991132335]),
+            //9
+            L.marker([41.49948667558774, -81.6941273380254]),
+            //10
+            L.marker([40.749789227405785, -73.99170063147251]),
+            //11
+            L.marker([38.89071338128196, -77.0050835301963]),
+            //12
+            L.marker([21.432099853714153, 39.82318671788486]),
+            //fraz
+            L.marker([40.750712081728196, -73.99388705580044]),
+            //rumble
+            L.marker([-4.304063156878134, 15.319983526500238]),
+            //17
+            L.marker([25.044610543318996, -77.34909393212537]),
+            //18
+            L.marker([40.84152354753833, -73.9427254068771]),
+            //19
+            L.marker([40.749352455005464, -73.96792410295487]),
+            //20
+            L.marker([38.89684127519678, -77.0365405317513]),
+            //21
+            L.marker([38.25794644120963, -85.75391101838648]),
+        ];
+
+        // Add markers to the map
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].addTo(map);
+        }
+
+        // Initialize marker index
+        var currentMarkerIndex = 0;
+
+        //Function to move to the next marker
+        function goToNextMarker() {
+            currentMarkerIndex++;
+            if (currentMarkerIndex >= markers.length) {
+                currentMarkerIndex = 0; // Wrap around to the first marker
+            }
+            map.setView(markers[currentMarkerIndex].getLatLng(), 14);
+        }
+
+        // Function to move to the previous marker
+        function goToPreviousMarker() {
+            currentMarkerIndex--;
+            if (currentMarkerIndex < 0) {
+                currentMarkerIndex = markers.length - 1; // Wrap around to the last marker
+            }
+            map.setView(markers[currentMarkerIndex].getLatLng(), 14);
+        }
+
+        // Function to move to the first marker
+        function goToBeginning() {
+            currentMarkerIndex = 0;
+            map.setView(markers[currentMarkerIndex].getLatLng(), 14);
+        }
+
+        // Function to move to the last marker
+        function goToEnd() {
+            currentMarkerIndex = markers.length - 1;
+            map.setView(markers[currentMarkerIndex].getLatLng(), 14);
+        }
+
+        document.getElementById('next').addEventListener('click', goToNextMarker);
+        document.getElementById('beginning').addEventListener('click', goToBeginning);
+        document.getElementById('end').addEventListener('click', goToEnd);
+        document.getElementById('previous').addEventListener('click', goToPreviousMarker);
+
+        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // --------- MARKERS --------------
+        const marker1 = L.marker([38.26004523790746, -85.7475290807345])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>JAN. 17, 1942</h3>
+        <h1>BORN CASSIUS CLAY, JR.</h1>
+        <p>Cassius Clay, Jr. is born to Odessa and Cassius Clay, Sr. at the Louisville General Hospital in South Louisville. neighborhood.</p>
+        <img src="images/pic1.png" alt="Image description" width="200" height="150">
+    </div>
+  `);
+
+        const marker2 = L.marker([38.243218288507954, -85.7590746166493])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>OCT. 11, 1954</h3>
+        <h1>RED BIKE MOMENT</h1>
+        <h4>Columbia Gym</h4>
+        <p>At twelve, Muhammad Ali had his red Schwinn bike stolen outside the Louisville Home Show. He reported the theft to policeman Joe Martin, who advised him to learn how to fight. Ali followed the advice, showing up the next day to start training, and spent the next six years under Martin's guidance.</p>
+        <img src="images/gym.jpg" alt="Image description" width="200" height="150">
+    </div>
+  `);
+
+        const marker3 = L.marker([38.25018502084625, -85.77070660293806])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>SEP. 24, 1957</h3>
+        <h1>ENTERS CENTRAL HIGH SCHOOL</h1>
+        <p>
+            Cassius, later diagnosed with dyslexia, faced academic challenges but became a school celebrity due to his dedication to training. He would visit the school as a hero after the Rome Olympic Games, leaving a lasting legacy.
+        </p>
+        <img src="images/hs.jpg" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker4 = L.marker([41.892046637203684, 12.488236383702395])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>SEP. 05, 1960</h3>
+        <h1>WINS OLYMPIC GOLD MEDAL</h1>
+        <h4>Basilica of Maxentius</h4>
+        <p>
+            Three months after high school, Ali, despite his fear of airplanes, boarded a flight wearing an army surplus parachute and won the light-heavyweight gold medal at the 1960 Summer Olympics in Rome by defeating Zbigniew Pietrzykowski of Poland.
+        </p>
+        <img src="images/rome.jpg" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker5 = L.marker([42.33178452840074, -83.0470311936967])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>JUN. 10, 1962</h3>
+        <h1>MEETS MALCOLM X</h1>
+        <h4>Detroit, Michigan</h4>
+        <p>Malcolm X wasn't a fan of boxing until he met Muhammad Ali. But from the moment the Civil Rights leader met the boxer in 1962, he was absolutely fascinated by the young fighter, who was still going by Cassius Clay at the time.</p>
+        <img src="images/mx.jpg" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker6 = L.marker([25.794914337124332, -80.13328063213561])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>FEB. 25, 1964</h3>
+        <h1>CLAY VS. SONNY LISTON</h1>
+        <h4>Miami Beach Convention Center</h4>
+
+        <p>In his first heavyweight title fight, Ali, an underdog against Liston, predicted a "total eclipse of the Sonny." He backed it up as Liston didn't answer the bell for the seventh round, and Ali declared, "I'm the greatest! I shook up the world!"</p>
+
+        <img src="images/miami.jpg" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker7 = L.marker([25.794914337124332, -80.13328063213561])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>FEB. 25, 1964</h3>
+        <h1>CLAY VS. SONNY LISTON</h1>
+        <h4>Miami Beach Convention Center</h4>
+
+        <p>In his first heavyweight title bout, Ali is a longshot to defeat
+Liston, widely seen as unstoppable. Nonetheless, Ali
+predicts “a total eclipse of the Sonny”—and indeed Liston
+does not rise to the seventh round’s opening bell. “I’m the greatest! I shook up the world!” <br><br>
+Win - Technical Knockout in 6 rounds</p>
+
+        <img src="images/miami.jpg" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker8 = L.marker([30.04729821833354, 31.236490881043135])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>MAY. 16, 1964</h3>
+        <h1>FIRST VISIT TO AFRICA</h1>
+
+        <p>Muhammad Ali had a lifelong connection to African people and nations. On this first trip to Ghana, Nigeria, and Egypt, Ali became an inspirational symbol of anti-colonialism. Ali was welcomed as a son of Africa, a hero, and an inspiration to youth throughout the world.</p>
+
+        <div class="image-container" style="display: flex; margin: 10px 10px; justify-content: space-between;">
+            <img src="images/egypt.png" alt="Image description" width="200" height="300" style="max-width: 40%; height: auto;">
+            <img src="images/egypt2.jpg" alt="Image description" width="200" height="300" style="max-width: 65%; height: auto;">
+        </div>
+    </div>
+  `);
+
+        const marker9 = L.marker([38.25988310262745, -85.79656991132335])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>MAY. 06, 1967</h3>
+        <h1>RALLIES WITH MARTIN LUTHER KING,JR.</h1>
+        <h4>Louisville</h4>
+
+        <p>In the late 1960s, Muhammad Ali and Dr. Martin Luther King Jr. united in Louisville to fight for fair housing. Their joint efforts resonated with the civil rights movement and had a lasting impact on equitable housing in the U.S.</p>
+
+        <img src="images/king.png" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker10 = L.marker([41.49948667558774, -81.6941273380254])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>JUN. 04, 1967</h3>
+        <h1>CLEVELAND SUMMIT</h1>
+        <h4>Cleveland</h4>
+
+        <p>
+            Jim Brown's 1967 Cleveland Summit united athletes, including Kareem Abdul-Jabbar, Bill Russell, and Muhammad Ali, to support Ali's draft refusal, emphasizing athletes' impact in social and political causes and their alignment with civil rights and anti-war movements.
+        </p>
+
+        <img src="images/summit.png" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker11 = L.marker([40.749789227405785, -73.99170063147251])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>MAR. 08, 1971</h3>
+        <h1>ALI VS. JOE FRAZIER</h1>
+        <h4>Madison Square Garden</h4>
+
+        <p>Ali's first heavyweight bout with Frazier, both undefeated, marked the start of a legendary rivalry. After three years away from the ring, Ali lost in a grueling 15 rounds, marking his first defeat.
+            <br><br>
+        Loss - Unanimous Decision in 15 rounds</p>
+
+        <img src="images/fraz.jpg" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker12 = L.marker([38.89071338128196, -77.0050835301963])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>JUN. 28, 1971</h3>
+        <h1>SUPREME COURT DECISION</h1>
+        <h4>Washington, DC</h4>
+
+        <p>
+            The U.S. Supreme Court unanimously ruled in Ali's favor in Clay v. United States, overturning his draft evasion conviction based on religious objection. This held significant symbolic importance in the anti-war and civil rights movements, allowing him to return to boxing.
+        </p>
+
+        <img src="images/sup.png" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker13 = L.marker([21.432099853714153, 39.82318671788486])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>JAN. 03, 1972</h3>
+        <h1>FIRST PILGRIMAGE TO MECCA-HAJJ</h1>
+        <h4>Saudi Arabia</h4>
+
+        <p>
+            After securing his passport through a Supreme Court decision, Muhammad Ali embarked on a transformative pilgrimage to Mecca in 1974. This journey deepened his connection to Islam, reinforcing the interplay between faith and his identity as a world-famous athlete.
+        </p>
+
+        <img src="images/hajj.png" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker14 = L.marker([40.750712081728196, -73.99388705580044])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>JAN. 03, 1972</h3>
+        <h1>SUPER FIGHT II</h1>
+        <h4>Madison Square Garden</h4>
+
+        <p>
+            Although Joe Frazier no longer held the title of Heavyweight Champion, Muhammad Ali
+wanted to face him again to prove he was indeed “the Greatest.” Billed as “Super Fight II,”
+the match went the distance of 12 rounds and ultimately led to a unanimous decision in
+favor of Ali.<br><br>
+Win - Unanimous Decision in 12 rounds
+        </p>
+
+        <img src="images/fraz2.jpg" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker15 = L.marker([-4.304063156878134, 15.319983526500238])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>OCT. 30, 1974</h3>
+        <h1>RUMBLE IN THE JUNGLE</h1>
+        <h4>Democratic Republic of the Congo</h4>
+
+        <p>
+            The "Rumble in the Jungle" was a historic 1974 boxing match in which Muhammad Ali defeated George Foreman using his famous "rope-a-dope" strategy, reclaiming the heavyweight title and solidifying his legendary status.
+            <br><br>
+            Win - Knockout in 8 rounds [Kinshasa, Zaire]
+        </p>
+
+        <img src="images/rumble.jpg" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker16 = L.marker([14.677611057002522, 121.04399041737379])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>OCT. 01, 1975</h3>
+        <h1>THRILLA IN MANILA</h1>
+        <h4>Quezon City, Philippines</h4>
+
+        <p>
+            The "Thrilla in Manila" was the unforgettable 1975 boxing match between Muhammad Ali and Joe Frazier held in the Philippines. It's renowned for its intensity and the physical toll it took on both fighters. Ali emerged victorious after a brutal 14 rounds, solidifying his status as one of the greatest boxers in history.
+            <br><br>
+            Win - Technical Knockout in 14 rounds
+        </p>
+
+        <img src="images/manilla.jpg" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker17 = L.marker([25.044610543318996, -77.34909393212537])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>DEC. 11, 1981</h3>
+        <h1>DRAMA IN BAHAMA</h1>
+        <h4>Nassau, Bahamas</h4>
+
+        <p>
+            The "Drama in the Bahamas" represents a significant chapter in boxing history, featuring the legendary Muhammad Ali facing off against Trevor Berbick. This fight marked the conclusion of Muhammad Ali's legendary career, signifying the end of an era in the world of boxing.
+            <br><br>
+            Loss - Unanimous Decision in 10 rounds
+        </p>
+
+        <img src="images/thrilla.jpg" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker18 = L.marker([40.84152354753833, -73.9427254068771])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>SEP.1984</h3>
+        <h1>DIAGNOSED WITH PARKINSON’S DISEASE</h1>
+        <h4>New York’s Columbia Presbyterian Hospital</h4>
+
+        <p>
+            After retiring, Ali's health rapidly declined. He checked into Columbia Presbyterian Hospital in New York and was diagnosed with Parkinson's disease, which causes tremors, stiffness, and mobility issues.
+        </p>
+
+        <img src="images/park.png" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker19 = L.marker([40.749352455005464, -73.96792410295487])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>SEP. 15, 1998</h3>
+        <h1>NAMED U.N. MESSENGER OF PEACE</h1>
+        <h4>United Nations Headquarters</h4>
+
+        <p>
+            Ali first came to the UN in 1978 to address the UN Special Committee against Apartheid with a message of peace and spirituality. <br><br>
+            
+            He brought people from all races together by preaching “healing” to everyone irrespective of race, religion or age.
+        </p>
+
+        <img src="images/peace.png" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker20 = L.marker([38.89684127519678, -77.0365405317513])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>NOV. 09, 2005</h3>
+        <h1>MEDAL OF FREEDOM</h1>
+        <h4>Washington, DC</h4>
+
+        <p>
+            President George W. Bush presents Ali with the highest U.S. civilian honor, recognizing his dedication to social justice, civil rights, and global peace, solidifying his iconic status as a change advocate.
+        </p>
+
+        <img src="images/medal.jpg" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+        const marker21 = L.marker([38.25794644120963, -85.75391101838648])
+            .addTo(map)
+            .bindPopup(`
+    <div class="marker-popup">
+        <h3>June 10, 2016</h3>
+        <h1>MUHAMMAD ALI's FUNERAL'</h1>
+        <h4>Louisville, KY</h4>
+
+        <p>
+            Muhammad Ali passes away late in the evening in Scottsdale, Arizona due to respiratory
+complications. He was 74.
+        </p>
+
+        <img src="images/funeral.png" alt="Image description" width="200" height="300">
+    </div>
+  `);
+
+    </script>
+
+
+
+</body>
+
+</html>
